@@ -1,0 +1,29 @@
+﻿@page "/"
+@using BlazorApp1.DTOs
+@using BlazorApp1.Utilitys
+@using static System.Net.Mime.MediaTypeNames
+
+<PageTitle>Index</PageTitle>
+<EditForm Model="Datos">
+    <InputFile OnChange="@imagen"></InputFile>
+
+    <InputFile OnChange="@RecorteImg" ></InputFile>
+    i<img src="@source" />
+</EditForm>
+
+@code
+{
+    QrDto Datos = new();
+    private string? source;
+    public async void imagen(InputFileChangeEventArgs file)
+    {
+        ImGuTIL Data = new();
+        var s = await Data.ConvertToImage(file.File.OpenReadStream());
+        Console.WriteLine(s);
+    }
+    public void RecorteImg(InputFileChangeEventArgs file)
+    {
+        
+        
+    }
+}
